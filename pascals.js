@@ -34,6 +34,8 @@ function check_row(row) {
 function make_box(n, k) {
     var correct = binomial(n, k);
     var box = $('<input type="text" data-correct="' + correct + '">');
+    if (correct % 2 == 0)
+        box.addClass('even');
     $('#row' + n).append(box);
     box.keyup(box_keyup);
     if (correct == 1) {
