@@ -26,8 +26,8 @@ function check_row(row) {
     if (countdown == 0) {
         var row_n = Number(row.attr('id').substring(3));
         make_row(row_n + 1);
-        var completedRow = Math.max(sessionStorage.completedRow, row_n);
-        sessionStorage.setItem('completedRow', completedRow);
+        var completedRow = Math.max(localStorage.completedRow, row_n);
+        localStorage.setItem('completedRow', completedRow);
     } else {
         row.data('countdown',  countdown);
     }
@@ -40,7 +40,7 @@ function make_box(n, k) {
         box.addClass('even');
     $('#row' + n).append(box);
     box.keyup(box_keyup);
-    if (sessionStorage.completedRow >= n || correct == 1) {
+    if (localStorage.completedRow >= n || correct == 1) {
         box.val(correct);
         check_answer(box);
     }
@@ -67,4 +67,8 @@ function adjust_width() {
 $(function(){
     make_row(0);
     $(window).on('resize', adjust_width);
+    $('#reset').click(function () {
+        localStorage.completedRow = 0;
+        location.reload();
+    });
 });

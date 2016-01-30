@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+input {
+    margin: 8px;
+    width: 58px;
+    background: LavenderBlush;
+    text-align: center;
+    border-width: 2px;
+    padding: 1px;
+}
+input:disabled.even {
+    background: PaleGreen;
+}
+input:disabled {
+    background: PaleGoldenRod;
+}
+div {
+    text-align: center;
+}
