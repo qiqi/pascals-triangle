@@ -26,6 +26,8 @@ function check_row(row) {
     if (countdown == 0) {
         var row_n = Number(row.attr('id').substring(3));
         make_row(row_n + 1);
+        var completedRow = Math.max(sessionStorage.completedRow, row_n);
+        sessionStorage.setItem('completedRow', completedRow);
     } else {
         row.data('countdown',  countdown);
     }
@@ -38,16 +40,16 @@ function make_box(n, k) {
         box.addClass('even');
     $('#row' + n).append(box);
     box.keyup(box_keyup);
-    if (correct == 1) {
-        box.val(1);
-        box.prop('disabled', true);
+    if (sessionStorage.completedRow >= n || correct == 1) {
+        box.val(correct);
+        check_answer(box);
     }
 }
 
 function make_row(n) {
     $('#main').data('n', n);
     adjust_width();
-    var n_box = n - 1;
+    var n_box = n + 1;
     var row = '<span id="row' + n + '" data-countdown="' + n_box + '"></span>';
     $('#main').append($('<div>' + row + '</div>'));
     for (var k = 0; k <= n; ++k)
@@ -64,7 +66,5 @@ function adjust_width() {
 
 $(function(){
     make_row(0);
-    make_row(1);
-    make_row(2);
     $(window).on('resize', adjust_width);
 });
