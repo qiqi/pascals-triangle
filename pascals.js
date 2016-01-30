@@ -61,7 +61,7 @@ function adjust_width() {
     var n = $('#main').data('n');
     if (n) {
         var width = Math.max(window.innerWidth - 20, 80 * (n + 2));
-        $('#main').css('width', width);
+        $('body').css('width', width);
     }
 }
 
