@@ -14,7 +14,7 @@ function box_keyup(evt) {
 }
 
 function check_answer(box) {
-    if (!box.prop('disabled') and box.val() == box.data('correct')) {
+    if (!box.prop('disabled') && box.val() == box.data('correct')) {
         box.prop('disabled', true);
         check_row(box.parent());
     }
