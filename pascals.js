@@ -45,6 +45,8 @@ function make_box(n, k) {
 }
 
 function make_row(n) {
+    $('#main').data('n', n);
+    adjust_width();
     var n_box = n - 1;
     var row = '<span id="row' + n + '" data-countdown="' + n_box + '"></span>';
     $('#main').append($('<div>' + row + '</div>'));
@@ -52,8 +54,17 @@ function make_row(n) {
         make_box(n, k);
 }
 
+function adjust_width() {
+    var n = $('#main').data('n');
+    if (n) {
+        var width = Math.max(window.innerWidth - 20, 80 * (n + 2));
+        $('#main').css('width', width);
+    }
+}
+
 $(function(){
     make_row(0);
     make_row(1);
     make_row(2);
+    $(window).on('resize', adjust_width);
 });
