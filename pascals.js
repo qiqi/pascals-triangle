@@ -14,7 +14,7 @@ function box_keyup(evt) {
 }
 
 function check_answer(box) {
-    if (box.val() == box.data('correct')) {
+    if (!box.prop('disabled') and box.val() == box.data('correct')) {
         box.prop('disabled', true);
         check_row(box.parent());
     }
@@ -40,6 +40,7 @@ function make_box(n, k) {
         box.addClass('even');
     $('#row' + n).append(box);
     box.keyup(box_keyup);
+    box.change(box_keyup);
     if (localStorage.completedRow >= n || correct == 1) {
         box.val(correct);
         check_answer(box);
@@ -65,6 +66,9 @@ function adjust_width() {
 }
 
 $(function(){
+    if (localStorage.completedRow == null) {
+        localStorage.completedRow = 0;
+    }
     make_row(0);
     $(window).on('resize', adjust_width);
     $('#reset').click(function () {
