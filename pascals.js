@@ -30,12 +30,13 @@ function check_row(row) {
         localStorage.setItem('completedRow', completedRow);
     } else {
         row.data('countdown',  countdown);
+        row.find('input:enabled').first().focus();
     }
 }
 
 function make_box(n, k) {
     var correct = binomial(n, k);
-    var box = $('<input type="text" data-correct="' + correct + '">');
+    var box = $('<input type="number" data-correct="' + correct + '">');
     if (correct % 2 == 0)
         box.addClass('even');
     $('#row' + n).append(box);
@@ -55,6 +56,7 @@ function make_row(n) {
     $('#main').append($('<div>' + row + '</div>'));
     for (var k = 0; k <= n; ++k)
         make_box(n, k);
+    $('#row' + n).find('input:enabled').first().focus();
 }
 
 function adjust_width() {
