@@ -68,7 +68,7 @@ function make_row(n) {
 function adjust_width() {
     var n = $('#main').data('n');
     if (n) {
-        var width = Math.max(window.innerWidth - 20, 80 * (n + 2));
+        var width = Math.max(window.innerWidth - 20, 100 * (n + 2));
         $('body').css('width', width);
     }
 }
