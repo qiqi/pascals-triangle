@@ -1,5 +1,11 @@
 "use strict"
 
+$(document).on("keydown", function (event) {
+  if (event.which === 8 && !$(event.target).is("input, textarea")) {
+   event.preventDefault();
+  }
+});
+
 function binomial(n, k) {  
     if ((typeof n !== 'number') || (typeof k !== 'number'))   
         return false;   
